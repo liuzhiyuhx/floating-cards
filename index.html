@@ -105,7 +105,7 @@
     <button id="clearAll" class="btn">🧹 清空卡片</button>
   </div>
 
-  <div class="credit">漂浮提示卡片墙（含背景水印）</div>
+  <div class="credit">zhy</div>
   <div class="small-avatar" id="moreBtn" title="更多">💌</div>
 
   <audio id="bgAudio" loop preload="auto">
@@ -164,7 +164,15 @@ spawnOneBtn.onclick=()=>spawnCard(randChoice(messages));
 clearAllBtn.onclick=()=>document.querySelectorAll('.card').forEach(c=>c.remove());
 moreBtn.onclick=()=>{for(let i=0;i<6;i++)setTimeout(()=>spawnCard(randChoice(messages)),i*140)};
 scheduleNext();
-document.addEventListener('click',function once(){document.removeEventListener('click',once);audio.play().then(()=>toggleAudioBtn.textContent='🔊 暂停音乐').catch(()=>{})});
+window.addEventListener('DOMContentLoaded', () => {
+  audio.play().then(() => {
+    toggleAudioBtn.textContent = '🔊 暂停音乐';
+  }).catch(() => {
+    // 浏览器阻止自动播放，需要用户点击
+    toggleAudioBtn.textContent = '🔈 播放音乐';
+  });
+});
+
 </script>
 </body>
 </html>
